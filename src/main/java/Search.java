@@ -3,8 +3,10 @@ import java.util.List;
 public class Search {
     public static void main(String[] args) {
         List<String> carNumbers = NumberCreator.generateCoolNumbers();
-        CarNumber.bruteForceSearchInList(carNumbers,"A111BC197");
-        // Перед выполнением бинарного поиска carNumbers нужно отсортировать
-        CarNumber.binarySearchInList(carNumbers,"A111BC197");
+        CarNumber.bruteForceSearchInList(carNumbers,"А111ВС197");
+        CarNumber.binarySearchInList(carNumbers,"А111ВС197");
+        CarNumber.searchInHashSet(carNumbers,"А111ВС197");
+        CarNumber.searchInTreeSet(carNumbers,"А111ВС197");
+
     }
 }
