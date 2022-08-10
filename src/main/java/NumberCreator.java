@@ -1,7 +1,6 @@
 import org.apache.commons.lang3.RandomStringUtils;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class NumberCreator {
     private static final String letters = "[АВЕКМНОРСТУХ]";
@@ -18,10 +17,10 @@ public class NumberCreator {
         return result;
     }
 
-    public static List<String> generateCoolNumbers() {
+    public static ArrayList<String> generateCoolNumbers() {
         long start = System.nanoTime();
-        List<String> result = new ArrayList<>();
-        for (int i = 0; i<=2000001;i++) {
+        ArrayList<String> result = new ArrayList<>();
+        for (int i = 0; i<=2000000;i++) {
             result.add(getNewNumber());
         }
         System.out.println("Время заполнения массива номеров: " + (System.nanoTime() - start)  + "нс");

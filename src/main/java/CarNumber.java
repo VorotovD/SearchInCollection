@@ -1,5 +1,4 @@
 import java.util.*;
-import java.util.stream.Stream;
 
 public class CarNumber {
     private static final String letters = "[АВЕКМНОРСТУХ]";
@@ -11,36 +10,37 @@ public class CarNumber {
 
 
     public static boolean bruteForceSearchInList(List<String> list, String number) {
-        if (list.isEmpty() || !numberCorrect(number)) {
+        if (!numberCorrect(number) || list.isEmpty()) {
             throw new IllegalArgumentException("Неверно введен массив номеров или поисковый номер");
         }
         long start = System.nanoTime();
         System.out.print("Поиск перебором:");
         for (String numbers : list) {
             if (numbers.equals(number)) {
-                System.out.println(" номер найден, поиск занял:" + (System.nanoTime() - start));
+                System.out.println(" номер найден, поиск занял:" + (System.nanoTime() - start) + "нс");
                 return true;
             }
         }
-        System.out.println(" номер не найден, поиск занял:" + (System.nanoTime() - start));
+        System.out.println(" номер не найден, поиск занял:" + (System.nanoTime() - start) + "нс");
         return false;
     }
 
-    public static boolean binarySearchInList(List<String> notSortedList, String number) {
-        if (notSortedList.isEmpty() || !numberCorrect(number)) {
+    public static boolean binarySearchInList(ArrayList<String> list, String number) {
+        if (list.isEmpty() || !numberCorrect(number)) {
             throw new IllegalArgumentException("Неверно введен массив номеров или поисковый номер");
         }
         long startOfSorting = System.nanoTime();
-        Stream<String> sortedList = notSortedList.stream().sorted();
+
+        Collections.sort(list);
         System.out.println("Время сортировки для бинарного поиска: " + (System.nanoTime() - startOfSorting) + "нс");
         long start = System.nanoTime();
         System.out.print("Бинарный поиск,");
-        int result = Arrays.binarySearch(sortedList.toArray(), number);
-        if (result != -1) {
+        int result = Arrays.binarySearch(list.toArray(), number);
+        if (result >= 0) {
             System.out.println(" номер найден, поиск занял:" + (System.nanoTime() - start) + "нс");
             return true;
         }
-        System.out.println(" номер не найден, поиск занял:" + (System.nanoTime() - start) + "нс");
+        System.out.println(" номер не найден, поиск занял:" + (System.nanoTime() - start) + "нс ");
         return false;
     }
 
